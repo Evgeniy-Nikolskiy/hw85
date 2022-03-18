@@ -3,3 +3,4 @@ molecule_docker
 docker
 ansible-lint
 yamllint
+ansible-galaxy
