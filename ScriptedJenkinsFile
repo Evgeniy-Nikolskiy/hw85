@@ -3,6 +3,11 @@ node('linux'){
             git branch: 'main', credentialsId: '375badcc-c089-4993-ae00-f6ecd540ff6e', url: 'git@github.com:Evgeniy-Nikolskiy/hw85.git'
     }
     stage('run playbook'){
-            sh 'ansible-galaxy install -r requirements.yml -p roles'
+        if (params.PROD_RUN){
+            sh 'ansible-playbook site.yml -i inventory/hosts.yml  --check --diff'
+        }
+        else{
+            sh 'ansible-playbook site.yml -i inventory/hosts.yml'
+        }
     }
 }
